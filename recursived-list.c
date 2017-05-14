@@ -40,7 +40,7 @@ List * tail(List *xs)
     return xs->tail;
 }
 
-int empyt(List *xs)
+int empty(List *xs)
 {
     if (xs == NULL)
         return 1;
@@ -49,21 +49,21 @@ int empyt(List *xs)
 
 int length(List *xs)
 {
-    if(empyt(xs))
+    if(empty(xs))
         return 0;
     return (1 + length(tail(xs)));
 }
 
 int sum(List *xs)
 {
-    if(empyt(xs))
+    if(empty(xs))
         return 0;
     return (head(xs) + sum(tail(xs)));
 }
 
 void write_list(List *xs)
 {
-    if (empyt(xs))
+    if (empty(xs))
     {
         printf("\n");
         return;
@@ -74,14 +74,14 @@ void write_list(List *xs)
 
 int last(List *xs)
 {
-    if (empyt(tail(xs)))
+    if (empty(tail(xs)))
         return head(xs);
     return last(tail(xs));
 }
 
 int member(int x, List *xs)
 {
-    if(empyt(xs))
+    if(empty(xs))
         return 0;
     else if(x == head(xs))
         return 1;
@@ -90,7 +90,7 @@ int member(int x, List *xs)
 
 int duplicated(List *xs)
 {
-    if (empyt(xs))
+    if (empty(xs))
         return 0;
     else if (member(head(xs), tail(xs)))
         return 1;
@@ -99,14 +99,14 @@ int duplicated(List *xs)
 
 List * append(List *xs, List *ys)
 {
-    if(empyt(xs))
+    if(empty(xs))
         return ys;
     return list(head(xs), append(tail(xs), ys));
 }
 
 List * reverse(List *xs)
 {
-    if(empyt(xs))
+    if(empty(xs))
         return xs;
     return append(reverse(tail(xs)), list(head(xs), NULL));
 
@@ -114,7 +114,7 @@ List * reverse(List *xs)
 
 List * reverse_acc_aux(List *xs, List *acc)
 {
-    if (empyt(xs))
+    if (empty(xs))
         return acc;
     return reverse_acc_aux(tail(xs), list(head(xs), acc));
 }
@@ -127,7 +127,7 @@ List * reverse_acc(List *xs)
 int max(List *xs)
 {
     int max_value = head(xs);
-    if (empyt(tail(xs)))
+    if (empty(tail(xs)))
         return max_value;
     else if (max_value > max(tail(xs)))
         return max_value;

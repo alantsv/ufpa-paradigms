@@ -40,7 +40,7 @@ void make_list (node *head)
     head = NULL;
 }
 
-int is_empyt (node *head)
+int is_empty (node *head)
 {
     if (head == NULL)
         return 1;
@@ -59,7 +59,7 @@ void print_list (node *head)
 
 void insert_begin(node **head, int value)
 {
-    if (is_empyt(*head))
+    if (is_empty(*head))
     {
         *head = (node *)malloc(sizeof(node));
         (*head)->value = value;
@@ -77,7 +77,7 @@ void insert_begin(node **head, int value)
 void insert_end(node **list, int value)
 {
     node *head = *list;
-    if (is_empyt(head))
+    if (is_empty(head))
     {
         head = (node *)malloc(sizeof(node));
         head->value = value;
@@ -86,7 +86,7 @@ void insert_end(node **list, int value)
     }
     else
     {
-        while(!is_empyt(head->next))
+        while(!is_empty(head->next))
            head = head->next;
         head->next = (node *)malloc(sizeof(node));
         head = head->next;
@@ -98,7 +98,7 @@ void insert_end(node **list, int value)
 void length_list(node *head)
 {
     int length = 0;
-    while (!is_empyt(head))
+    while (!is_empty(head))
     {
         length++;
         head = head->next;
@@ -108,7 +108,7 @@ void length_list(node *head)
 
 void remove_end_list(node *head)
 {
-    while(!is_empyt(head->next->next))
+    while(!is_empty(head->next->next))
         head = head->next;
     free(head->next);
     head->next = NULL;
@@ -140,7 +140,7 @@ void remove_value(node **list, int value)
     node *ref, *head = *list;
     while(head->next->value != value && head->next != NULL)
         head = head->next;
-    if(is_empyt(head->next))
+    if(is_empty(head->next))
         printf("Not found this value");
     else
     {
@@ -163,7 +163,7 @@ void reverse_list(node **list)
 {
     node *ref = *list;
     node *new_list = NULL;
-    while(!is_empyt(ref))
+    while(!is_empty(ref))
     {
         insert_begin(&new_list, ref->value);
         *list = (*list)->next;
