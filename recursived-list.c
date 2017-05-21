@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 typedef struct List
 {
@@ -152,6 +153,13 @@ int contiguos(List *xs)
     return contiguos(tail(xs));
 }
 
+List * drop (int i, List * xs)
+{
+    if (i == 0)
+        return xs;
+    return drop(i - 1, tail(xs));
+}
+
 List * drop_index(int x, List *xs)
 {
     if (empty(xs))
@@ -221,6 +229,30 @@ List * merge(List *xs, List *ys)
     return list(head(ys), merge(xs, tail(ys)));
 }
 
+List * take(int len, List *xs)
+{
+    if (len == 0)
+        return NULL;
+    return list(head(xs), take(len - 1, tail(xs)));
+}
+
+List * merge_sort_aux(List *xs, int len)
+{
+    if (len == 1)
+        return xs;
+
+    int half = len / 2;
+    // int half = floor(len / 2);
+    return merge(merge_sort_aux(take(half, xs), half),
+                    merge_sort_aux(drop(half, xs), len - half)
+                );
+}
+
+List * merge_sort(List *xs)
+{
+    return merge_sort_aux(xs, length(xs));
+}
+
 int main()
 {
     List * L1 = list(1, list(2, list(3, NULL)));
@@ -267,6 +299,9 @@ int main()
     write_list(merge(L1, L2));
 
     L4 = list(4, list(6, list(3, list(4, list(2, list(6, list(4, NULL)))))));
+
+    write("L4 list sorted with Merge Sort:");
+    write_list(merge_sort(L4));
 
     return 0;
 }
