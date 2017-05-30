@@ -1,4 +1,4 @@
-ass List {
+class List {
   public int head;
   public List tail;
   
