@@ -25,7 +25,7 @@ public class Main {
     write("L1 reversed WITH accumulator is ");write_list(reverse_acc(L1));
     writeln("The higher element of L1 is " + max(L1));
     writeln("The second element of L1 is " + nth(1, L1));
-    write("L1 without the 2nd element is ");write_list(drop(1, L1));
+    write("L1 without the 2nd element is ");write_list(drop_index(1, L1));
     writeln("Are there any contiguos elements is L1? " + contiguos(L1));
     writeln("L1 without the last element is ");write_list(init(L1));
     writeln("Are L1 and L2 equal? " + equal(L1, L2));
@@ -45,13 +45,13 @@ public class Main {
     writeln("What is the index of 3 in L1? " + index(3, L1));
     writeln("The third element of L1 is " + nth(2, L1));
     
-    L1 = list(1, list(2, list(11, NULL)));
+    L1 = list(1, list(2, list(11, null)));
     	
-    /*write("Merging the two ordered lists L1 and l2 is ");write_list(merge(L1, L2));*/
+    write("Merging the two ordered lists L1 and l2 is ");write_list(merge(L1, L2));
      
-    L4 = list(4,list(6,list(3,list(4,list(2,list(6,list(4,NULL))))))); 
+    L4 = list(4,list(6,list(3,list(4,list(2,list(6,list(4,null))))))); 
     
-    /*write("Merge sorting of L4 is ");write_list(merge_sort(L4));*/
+    write("Merge sorting of L4 is ");write_list(msort(L4));
   }
   
   static List list(int head, List tail) {
@@ -141,10 +141,10 @@ public class Main {
     return nth(i - 1, tail(xs));
   }
   
-  static List drop(int i, List xs) {
+  static List drop_index(int i, List xs) {
     if (i == 0)
       return tail(xs);
-    return list(head(xs), drop(i - 1, tail(xs)));
+    return list(head(xs), drop_index(i - 1, tail(xs)));
   }
   
   static boolean contiguos(List xs) {
@@ -211,6 +211,41 @@ public class Main {
   
   static int index(int x, List xs) {
     return index(x, xs, 0);
+  }
+  
+  static List merge(List xs, List ys) {
+    if (empty(xs))
+      return ys;
+    if (head(xs) < head(ys))
+      return list (head(xs), merge(tail(xs), ys));
+    if (head(ys) <= head(xs))
+      return list (head(ys), merge(tail(ys), xs));
+    return xs;
+  }
+  
+  static List drop(int end, List xs) {
+    if (empty(xs))
+      return xs;
+    if (end == 0)
+      return xs;
+    return drop(end - 1, tail(xs));
+  }
+  
+  static List take(int i, List xs) {
+    if (i == 0)
+      return null;
+    return list(head(xs), take(i - 1, tail(xs)));
+  }
+  
+  static List msort(List xs, int len){
+    if (len == 1)
+      return xs;
+    int half = len / 2;
+    return merge(msort(take(half, xs)), msort(drop(half,xs)));
+  }
+  
+  static List msort(List xs){
+    return msort(xs, length(xs));
   }
   
   static void write_list(List xs) {
