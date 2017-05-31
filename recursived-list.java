@@ -27,7 +27,7 @@ public class Main {
     writeln("The second element of L1 is " + nth(1, L1));
     write("L1 without the 2nd element is ");write_list(drop_index(1, L1));
     writeln("Are there any contiguos elements is L1? " + contiguos(L1));
-    writeln("L1 without the last element is ");write_list(init(L1));
+    write("L1 without the last element is ");write_list(init(L1));
     writeln("Are L1 and L2 equal? " + equal(L1, L2));
     
     L1 = list(1, list(2, list(1, null)));
@@ -52,6 +52,7 @@ public class Main {
     L4 = list(4,list(6,list(3,list(4,list(2,list(6,list(4,null))))))); 
     
     write("Merge sorting of L4 is ");write_list(msort(L4));
+    write("Changing fisrt to last"); write_list(change_first_last(L1));
   }
   
   static List list(int head, List tail) {
@@ -246,6 +247,11 @@ public class Main {
   
   static List msort(List xs){
     return msort(xs, length(xs));
+  }
+  
+  static List change_first_last(List xs) {
+    return list(last(xs), 
+                append(init(tail(xs)), list(head(xs), null)));
   }
   
   static void write_list(List xs) {
