@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+
+__author__ = "Alan Veloso"
+
 def list(x,xs = []): 
   return [x] + xs
 
@@ -175,54 +179,60 @@ def index(x, xs, i = 0):
     return i
   return index(x, tail(xs), i + 1)
 
-L1 = ['a','b','c','d']
-L2 = [1, 2, 3, 4, 0, 8, 1, 2]   
+def main():
 
-print('L1 is:'); wlist(L1)
-print('L2 is :'); wlist(L2)
-print('L1 length is:', length(L1))
-print('L1 length is: ', sum(L2))
-print('Appending L1 and L2:', append(L1, L2))
-print('The higher element of L2 is:', max(L2))
-print('Is c member of L2?:', member('c', L2))
-print('Is c member of L1?:', member('c', L1))
-print('L2 with 2 selected:', select(2, L2))
-print("L1 last element is ", last(L1));
-print("Are there duplicated elements is L1? ", duplicated(L1))
-print("The second element of L1 is ", nth(1, L1))
-print("L1 without the 2nd element is: ", drop_index(1, L1))
-print("Are there any contiguos elements is L1? ", contiguos(L1))
-print("L1 without the last element is ", init(L1))
-print("Are L1 and L2 equal? ", equal(L1, L2))
-print("Are L1 and L1 equal? ", equal(L1, L1))
+  L1 = ['a','b','c','d']
+  L2 = [1, 2, 3, 4, 0, 8, 1, 2]   
+  
+  print('L1 is:'); wlist(L1)
+  print('L2 is :'); wlist(L2)
+  print('L1 length is:', length(L1))
+  print('L1 length is: ', sum(L2))
+  print('Appending L1 and L2:', append(L1, L2))
+  print('The higher element of L2 is:', max(L2))
+  print('Is c member of L2?:', member('c', L2))
+  print('Is c member of L1?:', member('c', L1))
+  print('L2 with 2 selected:', select(2, L2))
+  print("L1 last element is ", last(L1));
+  print("Are there duplicated elements is L1? ", duplicated(L1))
+  print("The second element of L1 is ", nth(1, L1))
+  print("L1 without the 2nd element is: ", drop_index(1, L1))
+  print("Are there any contiguos elements is L1? ", contiguos(L1))
+  print("L1 without the last element is ", init(L1))
+  print("Are L1 and L2 equal? ", equal(L1, L2))
+  print("Are L1 and L1 equal? ", equal(L1, L1))
+  
+  print();
+  L1 = [1, 2, 1]
+  L2 = [1, 5, 6, 7]
+  L2 = [1, 2, 3, 4, 0, 8, 1, 2]
+  L3 = [1, 2, 3, 4, 0, 8, 1, 2, 10]
+  L4 = [1, 2, 7, 11]
+  L5 = [1, 3, 5, 12]
+  
+  print('L1 is:'); wlist(L1)
+  print('L2 is:'); wlist(L2)
+  print("Is L1 a palindrome? ", palindrome(L1));
+  print("Is L2 a palindrome? ", palindrome(L2));
+  print("L2 without duplicated elements is ", remove_dupl(L2));
+  print("Is L1 ordened? ", isOrd(L1));
+  print("Inserting 4 into the ordered list L5 is ", insert_in_order(4, L5));
+  print("What is the index of 3 in L1? ", index(3, L2));
+  
+  print();
+  print('L2 is:'); wlist(L2)
+  print('L3 is:'); wlist(L3)
+  print('L4 is:'); wlist(L4)
+  print('L5 is:'); wlist(L5)
+  print('L3 reversed without accumulator:', reverse(L3))
+  print('L2 reversed with accumulator', reverse_acc(L2))
+  print('The higher element of L2 using accumulator:', max(L2))
+  print('L2 partitioned:', partition(L2))
+  print('L3 partitioned:', partition(L3))
+  print('L4 and L5 merged:', merge(L4, L5))
+  print('L3 sorted for Merge Sort', msort(L3))
+  print('L2 sorted for Merge Sort', msort(L2))
 
-print();
-L1 = [1, 2, 1]
-L2 = [1, 5, 6, 7]
-L2 = [1, 2, 3, 4, 0, 8, 1, 2]
-L3 = [1, 2, 3, 4, 0, 8, 1, 2, 10]
-L4 = [1, 2, 7, 11]
-L5 = [1, 3, 5, 12]
-
-print('L1 is:'); wlist(L1)
-print('L2 is:'); wlist(L2)
-print("Is L1 a palindrome? ", palindrome(L1));
-print("Is L2 a palindrome? ", palindrome(L2));
-print("L2 without duplicated elements is ", remove_dupl(L2));
-print("Is L1 ordened? ", isOrd(L1));
-print("Inserting 4 into the ordered list L5 is ", insert_in_order(4, L5));
-print("What is the index of 3 in L1? ", index(3, L2));
-
-print();
-print('L2 is:'); wlist(L2)
-print('L3 is:'); wlist(L3)
-print('L4 is:'); wlist(L4)
-print('L5 is:'); wlist(L5)
-print('L3 reversed without accumulator:', reverse(L3))
-print('L2 reversed with accumulator', reverse_acc(L2))
-print('The higher element of L2 using accumulator:', max(L2))
-print('L2 partitioned:', partition(L2))
-print('L3 partitioned:', partition(L3))
-print('L4 and L5 merged:', merge(L4, L5))
-print('L3 sorted for Merge Sort', msort(L3))
-print('L2 sorted for Merge Sort', msort(L2))
+if __name__ == "__main__":
+    print("Main started")
+    main()
