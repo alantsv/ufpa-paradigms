@@ -1,8 +1,8 @@
-%% Exemplo 1
+%% Exemplo 1: regras DCG em Prolog
 
 r --> a,b. 
 a --> [a],a.
-a --> [].        %% regras DCG em Prolog 
+a --> [].
 b --> [b],b.
 b --> [].
 
@@ -28,7 +28,7 @@ não válidas {ba,aba,...}
       X=[a]   Yes    
 */
 
-%% Exemplo 2
+%% Exemplo 2: livre de contexto
 
 l --> [a],l,[b].
 l --> [].
@@ -48,4 +48,4 @@ l(A, A).
 Compare L com R ? 
 */
 
-%% Podemos colocar várias grámaticas no mesmo arquivo, a não seu que eles tenham os mesmos não terminais.
+%% Podemos colocar várias grámaticas no mesmo arquivo, a não seu que eles tenham os mesmos não-terminais.
