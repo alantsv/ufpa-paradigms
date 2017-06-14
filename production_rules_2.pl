@@ -45,6 +45,7 @@ Xr = 6
 
 */
 
+%% Exemplo 4: 
 s1 --> {X=[1,1+1,1+1+1],member(N,X),member(M,X)}, 
        a(N),b(M),c(N),d(M).
 
