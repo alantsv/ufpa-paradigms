@@ -23,7 +23,7 @@ class Romanos extends Primitivas {
   return (ddd(V, i, o) 
     || dd(V, i, o) 
     || d(V, i, o)); 
-  } 
+  }
   public static boolean d(String[] V, int[] i, int[] o) { 
     return (tok("0", i, o) && attr(V, "") 
         || tok("1", i, o) && attr(V, "I") 
@@ -64,14 +64,32 @@ class Romanos extends Primitivas {
         || tok("8", i, i1) && dd(D, i1, o) && attr(V, "DCCC" + D[0]) 
         || tok("9", i, i1) && dd(D, i1, o) && attr(V, "CM" + D[0]));
   }
-  public static void write(){
-      if (RS( V1, i, i1 ) && tok( "@", i1, o1 )) { 
-      System.out.println("Decimal: "+s.substring(0, s.length()-1) +" Romano: "+V1[0]); 
-    } 
-    else { 
-      System.out.println("Erro na posicao: "+(pe[0]+1)); 
-    } 
+  public static boolean DS( int [] V, int [] i, int [] o ){ 
+    int [] N = {0}; int [] i1 = {0}; int [] N1 = {0};
+  return (d(N, i, i1) && DS(N1, i1, o) && attr(V, N[0] + N1[0])
+        || attr (o, i[0]) && attr(V, 0));
   }
+  public static boolean d(int [] V, int [] i, int [] o){
+    int [] i1 = {0};
+    return (tok("C", i, o) && attr(V, 100)
+          || tok("X", i, i1) && tok ("C", i1, o) && attr(V, 90)
+          || tok("L", i, o) && attr(V, 50)
+          || tok("X", i, i1) && tok ("L", i1, o) && attr(V, 40)
+          || tok("X", i, o) && attr(V, 10)
+          || tok("I", i, i1) && tok ("X", i1, o) && attr(V, 9)
+          || tok("I", i, i1) && tok ("V", i1, o) && attr(V, 4)
+          || tok("V", i, o) && attr(V, 5)
+          || tok("I", i, o) && attr(V, 1)
+      );
+  }
+  // public static void write(){
+  //     if (RS( V1, i, i1 ) && tok( "@", i1, o1 )) { 
+  //     System.out.println("Decimal: "+s.substring(0, s.length()-1) +" Romano: "+V1[0]); 
+  //   } 
+  //   else { 
+  //     System.out.println("Erro na posicao: "+(pe[0]+1)); 
+  //   } 
+  // }
 }
 
 public class Main extends Romanos {
@@ -84,9 +102,9 @@ public class Main extends Romanos {
     else { 
       System.out.println("Erro na posicao: "+(pe[0]+1)); 
     } 
-    i[0] = 0; i1[0] = 0; o1[0] = 0; String[] V2 = {""}; 
+    i[0] = 0; i1[0] = 0; o1[0] = 0; int [] V2 = {0}; 
     le_fita("IV@"); pe[0] = 0; 
-    if ( RS( V2, i, i1 ) && tok( "@", i1, o1 ) ) { 
+    if ( DS( V2, i, i1 ) && tok( "@", i1, o1 ) ) { 
       System.out.println("Romano: "+s.substring(0, s.length()-1) +" Decimal: "+V2[0]); 
     } 
     else { 
