@@ -1,28 +1,9 @@
-class Primitivas { 
-  public static String s; 
-  public static void le_fita(String fita){ s = fita; } 
-  public static int[] pe = { 0 } ; 
-  public static boolean tok( String c, int[] i, int[] o ) { // c:in, i:in,o:out 
-	  o[0] = i[0] + 1; 
-	  if ( pe[0] < i[0]) { pe = o; } 
-	  return( s.substring( i[0], i[0] + 1 ).equals( c ) ); 
-	} 
-  public static boolean attr(String[] v, String exp) { 
-	  v[0] = exp; 
-	  return (true); 
-	} 
-
-  public static boolean attr(int[] v,int exp) { 
-	v[0] = exp; return(true); 
-	}
-} 
-
 //*****************************************
-class Romanos extends Primitivas { 
+public class Romanos extends Primitivas { 
   public static boolean RS( String[] V, int[] i, int[] o ) { 
   return (ddd(V, i, o) 
-    || dd(V, i, o) 
-    || d(V, i, o)); 
+        || dd(V, i, o) 
+        || d(V, i, o)); 
   }
   public static boolean d(String[] V, int[] i, int[] o) { 
     return (tok("0", i, o) && attr(V, "") 
@@ -82,33 +63,4 @@ class Romanos extends Primitivas {
           || tok("I", i, o) && attr(V, 1)
       );
   }
-  // public static void write(){
-  //     if (RS( V1, i, i1 ) && tok( "@", i1, o1 )) { 
-  //     System.out.println("Decimal: "+s.substring(0, s.length()-1) +" Romano: "+V1[0]); 
-  //   } 
-  //   else { 
-  //     System.out.println("Erro na posicao: "+(pe[0]+1)); 
-  //   } 
-  // }
 }
-
-public class Main extends Romanos {
-  public static void main( String args[] ) { 
-    int[] i = {0}; int[] i1 = {0}; int[] o1 = {0}; String[] V1 = {""}; 
-    le_fita("397@"); pe[0] = 0; 
-    if (RS( V1, i, i1 ) && tok( "@", i1, o1 )) { 
-      System.out.println("Decimal: "+s.substring(0, s.length()-1) +" Romano: "+V1[0]); 
-    } 
-    else { 
-      System.out.println("Erro na posicao: "+(pe[0]+1)); 
-    } 
-    i[0] = 0; i1[0] = 0; o1[0] = 0; int [] V2 = {0}; 
-    le_fita("IV@"); pe[0] = 0; 
-    if ( DS( V2, i, i1 ) && tok( "@", i1, o1 ) ) { 
-      System.out.println("Romano: "+s.substring(0, s.length()-1) +" Decimal: "+V2[0]); 
-    } 
-    else { 
-      System.out.println("Erro na posicao: "+(pe[0]+1)); 
-    } 
-  } 
-} 
